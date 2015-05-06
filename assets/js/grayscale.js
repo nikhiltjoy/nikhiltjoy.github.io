@@ -4,59 +4,66 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-$(function(){
-	var cRatio = {height:0,width:0};
-	var lRatio;
-	var cArray = ["rgb(255,255,255)","rgb(0,0,0)","rgb(0,0,0)","rgb(255,255,255)"]
-	
-	// jQuery to collapse the navbar on scroll
-	$(window).scroll(function() {
-		if ($(".navbar").offset().top > 50) {
-			$(".navbar-fixed-top").addClass("top-nav-collapse");
-			$('#timeline').height($(window).height()-$('#navBar').height());
-			$(".textNav").css("color",cArray[0]);
-		} else {
-			$(".navbar-fixed-top").removeClass("top-nav-collapse");
-			$('#timeline').height($(window).height());
-			var index = $('#myCarousel').find('.active').index();
-			$(".textNav").css("color",cArray[index]);
-		}
-	});
-	
-	$(window).load(function(){ // On load
-	 	if ($(".navbar").offset().top > 50) {
-			$(".navbar-fixed-top").addClass("top-nav-collapse");
-		} else {
-			$(".navbar-fixed-top").removeClass("top-nav-collapse");
-		}
-		$('#button').css('bottom', parseFloat($('.hover').css('margin-bottom'))-$('#button').height()/2);
-		cRatio.height = $('#introContainer').height()/$(window).height();
-		cRatio.width = $('#introContainer').width()/$(window).width();
-		lRatio = $('#logo').height()/$('#introContainer').height();
-		$('#timeline').height($(window).height()-$('#navBar').height());
-		$('#introContainer').height($(window).height()*0.55-$('#button').height());
-		$('#introContainer').width($(window).width()*0.7);
-		$('#logo').height($('#introContainer').height()*0.76).width($('#introContainer').height()*0.76);
-		$('#logoContainer').height($('#introContainer').height()*0.76).width($('#introContainer').height()*0.76);
-	});
-	$(window).resize(function(){ // On resize
-		var height = $(window).height();
-		var width = $(window).width();
-		$('#timeline').height($(window).height());
-		$('#introContainer').height($(window).height()*0.55-$('#button').height());
-		$('#button').css('bottom', parseFloat($('.hover').css('margin-bottom'))-$('#button').height()/2);
-		$('#introContainer').width($(window).width()*0.7);
-		$('#logo').height($('#introContainer').height()*0.76).width($('#introContainer').height()*0.76);
-		$('#logoContainer').height($('#introContainer').height()*0.76).width($('#introContainer').height()*0.76);
-		$('#introContainer').css('left', $(window).width()*585/1280);
-		$('#button').css('left', $(window).width()/2);
-		if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
-			var index = $('#myCarousel').find('.active').index();
-			$(".textColor").css('color',cArray[index]);
-		} else {
-			$(".textColor").css({color:"#fff"});
-		}
-	});
+$(function() {
+    var cRatio = {
+        height: 0,
+        width: 0
+    };
+    var lRatio;
+    var cArray = ["rgb(255,255,255)", "rgb(0,0,0)", "rgb(0,0,0)", "rgb(255,255,255)"]
+
+    // jQuery to collapse the navbar on scroll
+    $(window).scroll(function() {
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar-fixed-top").addClass("top-nav-collapse");
+            $('#timeline').height($(window).height() - $('#navBar').height());
+            $(".textNav").css("color", cArray[0]);
+        } else {
+            $(".navbar-fixed-top").removeClass("top-nav-collapse");
+            $('#timeline').height($(window).height());
+            var index = $('#myCarousel').find('.active').index();
+            $(".textNav").css("color", cArray[index]);
+        }
+    });
+
+    $(window).load(function() { // On load
+        if ($(".navbar").offset().top > 50) {
+            $(".navbar-fixed-top").addClass("top-nav-collapse");
+        } else {
+            $(".navbar-fixed-top").removeClass("top-nav-collapse");
+        }
+        $('#button').css('bottom', parseFloat($('.hover').css('margin-bottom')) - $('#button').height() / 2);
+        cRatio.height = $('#introContainer').height() / $(window).height();
+        cRatio.width = $('#introContainer').width() / $(window).width();
+        lRatio = $('#logo').height() / $('#introContainer').height();
+        $('#timeline').height($(window).height() - $('#navBar').height());
+        $('#introContainer').height($(window).height() * 0.55 - $('#button').height());
+        $('#introContainer').width($(window).width() * 0.7);
+        $('#logo').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
+        $('#logoContainer').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
+        $('#introContainer').css('left', $(window).width() * 585 / 1280);
+        $('#button').css('left', $(window).width() / 2);
+    });
+    $(window).resize(function() { // On resize
+        var height = $(window).height();
+        var width = $(window).width();
+        $('#timeline').height($(window).height());
+        $('#introContainer').height($(window).height() * 0.55 - $('#button').height());
+        $('#button').css('bottom', parseFloat($('.hover').css('margin-bottom')) - $('#button').height() / 2);
+        $('#introContainer').width($(window).width() * 0.7);
+        $('#logo').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
+        $('#logoContainer').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
+        $('#introContainer').css('left', $(window).width() * 585 / 1280);
+        $('#button').css('left', $(window).width() / 2);
+        if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
+            var index = $('#myCarousel').find('.active').index();
+            $(".textColor").css('color', cArray[index]);
+        } else {
+            $(".textColor").css({
+                color: "#fff"
+            });
+        }
+    });
 });
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
@@ -75,23 +82,33 @@ $('#myCarousel').carousel({
     cycle: true
 });
 
-$('#myCarousel').on('slide.bs.carousel',function(e){
+$('#myCarousel').on('slide.bs.carousel', function(e) {
     var index = $(this).find('.active').index();
     var slideTo = $(e.relatedTarget).index();
-	if ($(window).width() >= 768 && $(".navbar").offset().top < 50){
-		if (slideTo === 0 || slideTo === 3){
-			$(".textColor").animate({color:"#fff"},600);	
-		} else {
-			$(".textColor").animate({color:"#000"},600);
-		}
-	} else {
-			$(".textColor").css({color:"#fff"});
-	}
-	if (slideTo % 2 === 0){
-		$(".intro-body-text").animate({backgroundColor:"rgba(0, 0, 0, 0.4)"},600);	
-	} else {
-		$(".intro-body-text").animate({backgroundColor:"rgba(255, 255, 255, 0.4)"},600);
-	}
+    if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
+        if (slideTo === 0 || slideTo === 3) {
+            $(".textColor").animate({
+                color: "#fff"
+            }, 600);
+        } else {
+            $(".textColor").animate({
+                color: "#000"
+            }, 600);
+        }
+    } else {
+        $(".textColor").css({
+            color: "#fff"
+        });
+    }
+    if (slideTo % 2 === 0) {
+        $(".intro-body-text").animate({
+            backgroundColor: "rgba(0, 0, 0, 0.4)"
+        }, 600);
+    } else {
+        $(".intro-body-text").animate({
+            backgroundColor: "rgba(255, 255, 255, 0.4)"
+        }, 600);
+    }
 });
 
 // Closes the Responsive Menu on Menu Item Click
