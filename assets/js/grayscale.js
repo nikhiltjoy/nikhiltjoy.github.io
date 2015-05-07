@@ -32,25 +32,28 @@ $(function() {
         } else {
             $(".navbar-fixed-top").removeClass("top-nav-collapse");
         }
-        $('#button').css('bottom', parseFloat($('.hover').css('margin-left'))*(1.99) - $('#button').height() / 2);
-        cRatio.height = $('#introContainer').height() / $(window).height();
-        cRatio.width = $('#introContainer').width() / $(window).width();
-        lRatio = $('#logo').height() / $('#introContainer').height();
+		var iHeight = $(window).height() * 0.55 - $('#button').height();
+		var iWidth = $(window).width() * 0.7;
+		var dim = Math.min(iHeight,iWidth);
+		var offset = parseFloat($('.hover').css('margin-bottom'));
+		offset = (offset === 0)?($('#caption').height()+$('#button').height()*1.25):(offset - $('#button').height()/2);
+		$('#introContainer').height(dim).width(dim);
+        $('#button').css('bottom', offset);
         $('#timeline').height($(window).height() - $('#navBar').height());
-        $('#introContainer').height($(window).height() * 0.55 - $('#button').height());
-        $('#introContainer').width($(window).width() * 0.7);
         $('#logo').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
         $('#logoContainer').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
         $('#introContainer').css('left', $(window).width() * 585 / 1280);
         $('#button').css('left', $(window).width() / 2);
     });
     $(window).resize(function() { // On resize
-        var height = $(window).height();
-        var width = $(window).width();
+		var iHeight = $(window).height() * 0.55 - $('#button').height();
+		var iWidth = $(window).width() * 0.7;
+		var dim = Math.min(iHeight,iWidth);
+		var offset = parseFloat($('.hover').css('margin-bottom'));
+		offset = (offset === 0)?($('#caption').height()+$('#button').height()*1.25):(offset - $('#button').height()/2);
+		$('#introContainer').height(dim).width(dim);
         $('#timeline').height($(window).height());
-        $('#introContainer').height($(window).height() * 0.55 - $('#button').height());
-        $('#button').css('bottom', parseFloat($('.hover').css('margin-left'))*(1.99) - $('#button').height() / 2);
-        $('#introContainer').width($(window).width() * 0.7);
+        $('#button').css('bottom', offset);
         $('#logo').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
         $('#logoContainer').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
         $('#introContainer').css('left', $(window).width() * 585 / 1280);
