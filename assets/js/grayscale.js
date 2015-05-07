@@ -32,7 +32,7 @@ $(function() {
         } else {
             $(".navbar-fixed-top").removeClass("top-nav-collapse");
         }
-        $('#button').css('bottom', parseFloat($('.hover').css('margin-bottom')) - $('#button').height() / 2);
+        $('#button').css('bottom', parseFloat($('.hover').css('margin-left'))*(1.99) - $('#button').height() / 2);
         cRatio.height = $('#introContainer').height() / $(window).height();
         cRatio.width = $('#introContainer').width() / $(window).width();
         lRatio = $('#logo').height() / $('#introContainer').height();
@@ -49,7 +49,7 @@ $(function() {
         var width = $(window).width();
         $('#timeline').height($(window).height());
         $('#introContainer').height($(window).height() * 0.55 - $('#button').height());
-        $('#button').css('bottom', parseFloat($('.hover').css('margin-bottom')) - $('#button').height() / 2);
+        $('#button').css('bottom', parseFloat($('.hover').css('margin-left'))*(1.99) - $('#button').height() / 2);
         $('#introContainer').width($(window).width() * 0.7);
         $('#logo').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
         $('#logoContainer').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);

@@ -175,8 +175,8 @@ section, footer, header{
 	color:#ddd;
 }
 
-#timeline .vco-timeline .vco-navigation .timenav .content .marker.active .flag .flag-content h3 { 
-	color:#08C;
+#timeline .marker.active h3 { 
+	color:#08C!important;
 }
 
 /* The loading screen */
@@ -201,7 +201,7 @@ section, footer, header{
 
 #timeline .slider-item h2,
 #timeline .slider-item h3{
-	font-family:'Antic Slab','Segoe UI',sans-serif;
+	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 #timeline .slider-item h2{
@@ -209,7 +209,7 @@ section, footer, header{
 }
 
 #timeline .slider-item p{
-	font-family:'Segoe UI',sans-serif;
+	font-family:Lato,"Helvetica Neue",Helvetica,Arial,sans-serif!important;
 }
 
 
@@ -221,18 +221,21 @@ section, footer, header{
 /* Customizing the first slide - the cover */
 
 #timeline .slider-item:nth-child(1) h2{
-	font:normal 4.75vw 'Antic Slab','Segoe UI',sans-serif;
+	font-size: 3.5vw;
+	background:rgba(0,0,0,0.3);
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-transform:uppercase;
 	overflow:visible;
-	white-space: nowrap;
-	padding:10px 5px 5px 20px;
+	/*white-space: nowrap;*/
+	padding:10px 5px 5px 30px;
 	position:relative;
 	right:-60px;
 	z-index:10;
 }
 
-#timeline .slider-item:nth-child(1) p i{
-	font:normal normal 40px 'Dancing Script','Segoe UI',sans-serif;
-	background:rgba(0,0,0,0.3);
+#timeline .slider-item:nth-child(1) p {
+	font-size: 1.25vw;
+	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif!important;
 	white-space: nowrap;
 	padding:5px 20px;
 	position:relative;
@@ -258,31 +261,3 @@ section, footer, header{
 	text-align: center;
 }
 
-
-/*----------------------------
-	Back to Tzine header
------------------------------*/
-
-
-header{
-	width:267px;
-	height:48px;
-	position:fixed;
-	top:0;
-	left:50%;
-	margin-left: -440px;
-	z-index: 1000;
-	box-shadow: 0 0 2px #000000;
-}
-
-header a{
-	border:none !important;
-	text-indent:-9999px;
-	overflow:hidden;
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	background:url('../img/download_on_tutorialzine.jpg') no-repeat;
-}
