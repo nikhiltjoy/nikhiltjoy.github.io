@@ -43,6 +43,9 @@ p {
         font-size: 20px;
         line-height: 1.6;
     }
+	.intro-text {
+		font-weight: 100;
+	}
 }
 
 a {
@@ -58,8 +61,8 @@ a:focus {
     color: #1d9b6c;
 }
 
-.light {
-    font-weight: 100;
+.intro-text {
+    font-weight: 300;
 }
 
 .navbar-custom {
@@ -185,7 +188,7 @@ a:focus {
 }
 
 .intro .intro-body .intro-text {
-    font-size: 3vmin;
+    font-size: 2.7vmin;
 	margin:0;
 }
 
