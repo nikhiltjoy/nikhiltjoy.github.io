@@ -57,7 +57,7 @@ jsonObj = json.dumps(titleObj, indent=4, separators=(',', ': '))
 
 outputJs = '$(function(){var dataObject =' + jsonObj + '\n' + 'var timeline = new VMM.Timeline("timeline");\n'+'timeline.init({type:\'timeline\',width:\'100%\',height:\'650\',source:dataObject,embed_id:\'timeline\'});});'
 
-open('./assets/js/new_script.js','w').write(outputJs)
+open('./js/new_script.js','w').write(outputJs)
 
         
 
