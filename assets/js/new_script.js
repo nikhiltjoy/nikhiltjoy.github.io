@@ -107,14 +107,14 @@ $(function(){var dataObject ={
                 }
             },
             {
-                "startDate": "2015,9,1",
+                "startDate": "",
                 "endDate": "",
-                "headline": "Software Engineering Intern - Bustle",
-                "text": "Location: New York, NY \u25baDesigning infrastructure to collect various metrics such as click events, app installation instances, etc. using Amazon\u2019s API Gateway and Lambda (node.js), and storing them in a Redis database for future data analytics on user engagement \u25baTaking charge of using text analyzing APIs such as AlchemyAPI and Indico to process article content for further insights",
+                "headline": "http://cdn.bustle.com/images/logo-2242a9475cf9232975c867daa229715e.svg",
+                "text": "Bustle",
                 "asset": {
-                    "media": "http://cdn.bustle.com/images/logo-2242a9475cf9232975c867daa229715e.svg",
-                    "thumbnail": "http://www.bustle.com/ms-tile-144.png",
-                    "credit": "Bustle",
+                    "media": "",
+                    "thumbnail": "",
+                    "credit": "http://www.bustle.com/ms-tile-144.png",
                     "caption": ""
                 }
             }
