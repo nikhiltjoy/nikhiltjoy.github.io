@@ -107,14 +107,14 @@ $(function(){var dataObject ={
                 }
             },
             {
-                "startDate": "",
-                "endDate": "",
-                "headline": "http://cdn.bustle.com/images/logo-2242a9475cf9232975c867daa229715e.svg",
-                "text": "Bustle",
+                "startDate": "2015,9,1",
+                "endDate": "2015,12,17",
+                "headline": "Software Engineering Intern - Bustle",
+                "text": "Location: New York, NY \u25baSpearheaded infrastructure development to collect various metrics such as click events, app installation instances, etc. using Amazon\u2019s API Gateway and Lambda (node.js) in main Ember.js application \u25baTook charge of project that built infrastructure using ElasticSearch and Serverless, a framework that utilizes AWS to build serverless micro-services, to handle geo-ip requests, and further provide weather data and location based analytics for internal use",
                 "asset": {
-                    "media": "",
-                    "thumbnail": "",
-                    "credit": "http://www.bustle.com/ms-tile-144.png",
+                    "media": "http://cdn.bustle.com/images/logo-2242a9475cf9232975c867daa229715e.svg",
+                    "thumbnail": "http://www.bustle.com/ms-tile-144.png",
+                    "credit": "Bustle",
                     "caption": ""
                 }
             }
