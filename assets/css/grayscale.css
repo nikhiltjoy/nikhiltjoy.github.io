@@ -20,7 +20,7 @@ a:focus{text-decoration:none;color:#1d9b6c;}
 .navbar-custom .navbar-brand .navbar-toggle{padding:4px 6px;font-size:16px;color:#fff;}
 .navbar-custom .navbar-brand .navbar-toggle:focus,
 .navbar-custom .navbar-brand .navbar-toggle:active{outline:0;}
-.textColor{color:rgb(255,255,255);}
+.textColor{color:rgb(0,0,0);}
 .textColorNav{color:rgb(255,255,255);}
 .navbar-custom .nav li a{-webkit-transition:background .3s ease-in-out;-moz-transition:background .3s ease-in-out;transition:background .3s ease-in-out;}
 .navbar-custom .nav li a:hover{outline:0;color:rgba(255,255,255,.8);background-color:transparent;}
@@ -36,7 +36,7 @@ a:focus{text-decoration:none;color:#1d9b6c;}
 .hover{z-index:10;height:50%;display:table-cell;vertical-align:middle;overflow:visible;margin:auto;position:absolute;top:0;left:0;bottom:0;right:0;}
 .intro .intro-body{display:table-cell;vertical-align:middle;}
 .intro .intro-body .brand-heading{font-size:40px;}
-.intro .intro-body .intro-body-text{background-color:rgba(0, 0, 0, 0.4);}
+.intro .intro-body .intro-body-text{background-color:rgba(255, 255, 255, 0.4);}
 .intro .intro-body .intro-text{font-size:2.7vmin;margin:0;}
 #introContainer{position:absolute;left:50%;-moz-transform:translateX(-50%);-webkit-transform:translateX(-50%);transform:translateX(-50%);}
 .intro .container{margin-left:4.3%;margin-right:4.3%;padding:0;}

@@ -4,17 +4,30 @@ $(function() {
         width: 0
     };
     var lRatio;
-    var cArray = ["rgb(255,255,255)", "rgb(0,0,0)", "rgb(0,0,0)", "rgb(255,255,255)"]
+    var cArray = ["rgb(0,0,0)", "rgb(255,255,255)", "rgb(0,0,0)", "rgb(0,0,0)", "rgb(255,255,255)"];
     $(window).scroll(function() {
         if ($(".navbar").offset().top > 50) {
             $(".navbar-fixed-top").addClass("top-nav-collapse");
             $('#timeline').height($(window).height() - $('#navBar').height());
-            $(".textNav").css("color", cArray[0]);
+            if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
+                var index = $('#myCarousel').find('.active').index();
+                $(".textColor").css('color', cArray[index]);
+            } else {
+                $(".textColor").css({
+                    color: "#fff"
+                });
+            }
         } else {
             $(".navbar-fixed-top").removeClass("top-nav-collapse");
             $('#timeline').height($(window).height());
-            var index = $('#myCarousel').find('.active').index();
-            $(".textNav").css("color", cArray[index]);
+            if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
+                var index = $('#myCarousel').find('.active').index();
+                $(".textColor").css('color', cArray[index]);
+            } else {
+                $(".textColor").css({
+                    color: "#fff"
+                });
+            }
         }
     });
     $(window).load(function() {
@@ -35,6 +48,14 @@ $(function() {
         $('#logoContainer').height($('#introContainer').height() * 0.76).width($('#introContainer').height() * 0.76);
         $('#introContainer').css('left', $(window).width() * 585 / 1280);
         $('#button').css('left', $(window).width() / 2);
+        if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
+            var index = $('#myCarousel').find('.active').index();
+            $(".textColor").css('color', cArray[index]);
+        } else {
+            $(".textColor").css({
+                color: "#fff"
+            });
+        }
     });
     $(window).resize(function() {
         var iHeight = $(window).height() * 0.55 - $('#button').height();
@@ -69,14 +90,15 @@ $(function() {
     });
 });
 $('#myCarousel').carousel({
-    interval: 5000,
+    interval: 3500,
     cycle: true
 });
 $('#myCarousel').on('slide.bs.carousel', function(e) {
     var index = $(this).find('.active').index();
     var slideTo = $(e.relatedTarget).index();
     if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
-        if (slideTo === 0 || slideTo === 3) {
+        var whiteText = [1, 4];
+        if (whiteText.indexOf(slideTo) > -1) {
             $(".textColor").animate({
                 color: "#fff"
             }, 600);
@@ -90,7 +112,8 @@ $('#myCarousel').on('slide.bs.carousel', function(e) {
             color: "#fff"
         });
     }
-    if (slideTo % 2 === 0) {
+    var blackBox = [1, 3];
+    if (blackBox.indexOf(slideTo) > -1) {
         $(".intro-body-text").animate({
             backgroundColor: "rgba(0, 0, 0, 0.4)"
         }, 600);
@@ -103,131 +126,3 @@ $('#myCarousel').on('slide.bs.carousel', function(e) {
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
-google.maps.event.addDomListener(window, 'load', init);
-
-function init() {
-    var mapOptions = {
-        zoom: 15,
-        center: new google.maps.LatLng(40.6700, -73.9400),
-        disableDefaultUI: true,
-        scrollwheel: false,
-        draggable: false,
-        styles: [{
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 17
-            }]
-        }, {
-            "featureType": "landscape",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 20
-            }]
-        }, {
-            "featureType": "road.highway",
-            "elementType": "geometry.fill",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 17
-            }]
-        }, {
-            "featureType": "road.highway",
-            "elementType": "geometry.stroke",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 29
-            }, {
-                "weight": 0.2
-            }]
-        }, {
-            "featureType": "road.arterial",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 18
-            }]
-        }, {
-            "featureType": "road.local",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 16
-            }]
-        }, {
-            "featureType": "poi",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 21
-            }]
-        }, {
-            "elementType": "labels.text.stroke",
-            "stylers": [{
-                "visibility": "on"
-            }, {
-                "color": "#000000"
-            }, {
-                "lightness": 16
-            }]
-        }, {
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "saturation": 36
-            }, {
-                "color": "#000000"
-            }, {
-                "lightness": 40
-            }]
-        }, {
-            "elementType": "labels.icon",
-            "stylers": [{
-                "visibility": "off"
-            }]
-        }, {
-            "featureType": "transit",
-            "elementType": "geometry",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 19
-            }]
-        }, {
-            "featureType": "administrative",
-            "elementType": "geometry.fill",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 20
-            }]
-        }, {
-            "featureType": "administrative",
-            "elementType": "geometry.stroke",
-            "stylers": [{
-                "color": "#000000"
-            }, {
-                "lightness": 17
-            }, {
-                "weight": 1.2
-            }]
-        }]
-    };
-    var mapElement = document.getElementById('map');
-    var map = new google.maps.Map(mapElement, mapOptions);
-    var image = 'img/map-marker.png';
-    var myLatLng = new google.maps.LatLng(40.6700, -73.9400);
-    var beachMarker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        icon: image
-    });
-}
