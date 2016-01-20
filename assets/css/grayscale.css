@@ -36,7 +36,7 @@ a:focus{text-decoration:none;color:#1d9b6c;}
 .hover{z-index:10;height:50%;display:table-cell;vertical-align:middle;overflow:visible;margin:auto;position:absolute;top:0;left:0;bottom:0;right:0;}
 .intro .intro-body{display:table-cell;vertical-align:middle;}
 .intro .intro-body .brand-heading{font-size:40px;}
-.intro .intro-body .intro-body-text{background-color:rgba(255, 255, 255, 0.4);}
+.intro .intro-body .intro-body-text{background-color:rgba(0, 0, 0, 0.4);}
 .intro .intro-body .intro-text{font-size:2.7vmin;margin:0;}
 #introContainer{position:absolute;left:50%;-moz-transform:translateX(-50%);-webkit-transform:translateX(-50%);transform:translateX(-50%);}
 .intro .container{margin-left:4.3%;margin-right:4.3%;padding:0;}
