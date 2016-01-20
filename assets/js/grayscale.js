@@ -4,7 +4,7 @@ $(function() {
         width: 0
     };
     var lRatio;
-    var cArray = ["rgb(255,255,255)", "rgb(0,0,0)", "rgb(0,0,0)", "rgb(255,255,255)"]
+    var cArray = ["rgb(0,0,0)", "rgb(255,255,255)", "rgb(0,0,0)", "rgb(0,0,0)", "rgb(255,255,255)"]
     $(window).scroll(function() {
         if ($(".navbar").offset().top > 50) {
             $(".navbar-fixed-top").addClass("top-nav-collapse");
@@ -28,6 +28,10 @@ $(function() {
         var dim = Math.min(iHeight, iWidth);
         var offset = parseFloat($('.hover').css('margin-bottom'));
         offset = (offset === 0) ? ($('#caption').height() + $('#button').height() * 1.25) : (offset - $('#button').height() / 2);
+        if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
+            var index = $('#myCarousel').find('.active').index();
+            $(".textColor").css('color', cArray[index]);
+        }
         $('#introContainer').height(dim).width(dim);
         $('#button').css('bottom', offset);
         $('#timeline').height($(window).height() - $('#navBar').height());
@@ -76,7 +80,9 @@ $('#myCarousel').on('slide.bs.carousel', function(e) {
     var index = $(this).find('.active').index();
     var slideTo = $(e.relatedTarget).index();
     if ($(window).width() >= 768 && $(".navbar").offset().top < 50) {
-        if (slideTo === 0 || slideTo === 3) {
+        var whiteHead = [1, 4];
+        var blackBox = [1, 3];
+        if (whiteHead.indexOf(slideTo) > -1) {
             $(".textColor").animate({
                 color: "#fff"
             }, 600);
@@ -90,7 +96,7 @@ $('#myCarousel').on('slide.bs.carousel', function(e) {
             color: "#fff"
         });
     }
-    if (slideTo % 2 === 0) {
+    if (blackBox.indexOf(slideTo) > -1) {
         $(".intro-body-text").animate({
             backgroundColor: "rgba(0, 0, 0, 0.4)"
         }, 600);
