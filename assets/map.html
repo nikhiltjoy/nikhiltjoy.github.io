@@ -43,6 +43,7 @@
     var datapoints = {}
     var center = {}
     var map;
+    var infowindow;
 
     function getJSON() {
         $.get("http://www.nikhiltjoy.com/assets/singapore.json", function(data, status) {
@@ -52,14 +53,11 @@
                 var day_string = "Day " + (index + 1);
                 datapoints[day_string] = {
                     items: data.itinerary[day],
-                    startend: [markers.length, markers.length+data.itinerary[day].length - 1],
+                    startend: [markers.length, markers.length + data.itinerary[day].length - 1],
                     avg: day
                 };
                 data.itinerary[day].map(function(item) {
-                    addMarker({
-                        lat: item.location.lat,
-                        lng: item.location.lng
-                    }, index === 0);
+                    addMarker(item, index === 0);
                 });
                 var $input = $('<input type="button" class="day" value="' + day_string + '" />');
                 $input.appendTo($("#floating-panel"));
@@ -71,15 +69,22 @@
                     });
                 }
             });
-            console.log(datapoints);
         });
     }
 
-    function addMarker(location, disp) {
+    function addMarker(item, disp) {
         var m = disp ? map : null;
         var marker = new google.maps.Marker({
-            position: location,
-            map: m
+            position: {
+                lat: item.location.lat,
+                lng: item.location.lng
+            },
+            map: m,
+            title: item.name
+        });
+        marker.addListener('click', function() {
+            getInfoWindow(item);
+            infowindow.open(map, marker);
         });
         markers.push(marker);
     }
@@ -101,9 +106,7 @@
             lng: parseFloat(coords[1])
         });
         var startend = datapoints[day_string].startend;
-        console.log(startend);
         for (var i = startend[0]; i <= startend[1]; i++) {
-            console.log('lol');
             markers[i].setMap(map);
         }
         // console.log(map);
@@ -118,7 +121,19 @@
         }
     }
 
+    function getInfoWindow(item) {
+        var contentString = '<table> <tbody> <tr> <td> <h1 id="firstHeading" class="firstHeading">' + item.name + '</h1> </td> <td> <h2 style="text-align: right;">' + item.rating + '</h2> </td> </tr> <tr> <td><strong>Phone: ' + item.phone_no + '</strong></td> </tr> <tr> <td>' + item.location.address.street + '</td> </tr> <tr> <td> <table> <tbody> <tr> <td>' + item.location.address.city + '</td> <td>' + item.location.address.state + '</td> <td>' + item.location.address.country + '</td> </tr> </tbody> </table> </td> </tr> <tr> <td>' + item.location.address.postalCode + '</td> </tr> </tbody> </table>';
+        infowindow.setOptions({
+            // position: {
+            //     lat: item.location.lat,
+            //     lng: item.location.lng
+            // },
+            content: contentString
+        });
+    }
+
     function initMap(location) {
+        infowindow = new google.maps.InfoWindow;
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
             center: location
