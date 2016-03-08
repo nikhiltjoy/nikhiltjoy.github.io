@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto', 'sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+    
+    #map {
+        height: 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="floating-panel">
+    </div>
+    <div id="map"></div>
+    <script>
+    var markers = []
+    var datapoints = {}
+    var center = {}
+    var map;
+
+    function getJSON() {
+        $.get("http://www.nikhiltjoy.com/assets/singapore.json", function(data, status) {
+            center = data.location;
+            initMap(data.location);
+            Object.keys(data.itinerary).forEach(function(day, index) {
+                var day_string = "Day " + (index + 1);
+                datapoints[day_string] = {
+                    items: data.itinerary[day],
+                    startend: [markers.length, markers.length+data.itinerary[day].length - 1],
+                    avg: day
+                };
+                data.itinerary[day].map(function(item) {
+                    addMarker({
+                        lat: item.location.lat,
+                        lng: item.location.lng
+                    }, index === 0);
+                });
+                var $input = $('<input type="button" class="day" value="' + day_string + '" />');
+                $input.appendTo($("#floating-panel"));
+                if (index === 0) {
+                    var coords = day.split(',');
+                    map.setCenter({
+                        lat: parseFloat(coords[0]),
+                        lng: parseFloat(coords[1])
+                    });
+                }
+            });
+            console.log(datapoints);
+        });
+    }
+
+    function addMarker(location, disp) {
+        var m = disp ? map : null;
+        var marker = new google.maps.Marker({
+            position: location,
+            map: m
+        });
+        markers.push(marker);
+    }
+
+    $(document).on('click', ".day", function() {
+        var day_string = $(this).attr('value');
+        dispMarkers(day_string);
+    });
+
+    function dispMarkers(day_string) {
+        Object.keys(datapoints).forEach(function(day) {
+            if (day !== day_string) {
+                removeMarkers(day);
+            }
+        });
+        var coords = datapoints[day_string].avg.split(',');
+        map.setCenter({
+            lat: parseFloat(coords[0]),
+            lng: parseFloat(coords[1])
+        });
+        var startend = datapoints[day_string].startend;
+        console.log(startend);
+        for (var i = startend[0]; i <= startend[1]; i++) {
+            console.log('lol');
+            markers[i].setMap(map);
+        }
+        // console.log(map);
+    }
+
+    function removeMarkers(day_string) {
+        var startend = datapoints[day_string].startend;
+        for (var i = startend[0]; i <= startend[1]; i++) {
+            if (markers[i].map !== null) {
+                markers[i].setMap(null);
+            }
+        }
+    }
+
+    function initMap(location) {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: location
+        });
+    }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtQf4oUv3pgyb-7cupYwrOSr39ou5Fs5Q&callback=getJSON">
+    </script>
+</body>
+
+</html>
