@@ -5,8 +5,8 @@
         "lat": 1.3553794,
         "lng": 103.86774439999999
     },
-    "itinerary": [
-        [{
+    "itinerary": {
+        "1.27477994286,103.837565143": [{
             "rating": null,
             "name": "Chinatown",
             "menu_url": null,
@@ -170,7 +170,7 @@
                 "Seafood Restaurants"
             ]
         }],
-        [{
+        "1.29655472857,103.851062": [{
             "rating": 9.5,
             "name": "Gardens By The Bay",
             "menu_url": null,
@@ -333,7 +333,7 @@
                 "Dim Sum Restaurants"
             ]
         }],
-        [{
+        "1.3620523,103.800117657": [{
             "rating": 9.3,
             "name": "Singapore Zoo",
             "menu_url": null,
@@ -495,5 +495,5 @@
                 "Trails"
             ]
         }]
-    ]
+    }
 }
